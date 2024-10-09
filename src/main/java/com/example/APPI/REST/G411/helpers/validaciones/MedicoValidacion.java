@@ -14,7 +14,7 @@ public class MedicoValidacion {
             return true;
         }
 
-        public Boolean validarMatricula){
+        public Boolean validarMatricula(){
             return true;
         }
 

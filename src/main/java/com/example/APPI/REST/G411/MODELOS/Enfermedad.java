@@ -8,9 +8,9 @@ public class Enfermedad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nombre;
-    private String sintomas;
-    private String clasificacion;
+    private String nombre; // maximo 30 caracteres
+    private String sintomas; // maximo 100 caracteres
+    private String clasificacion; // 
     private String grado;
     private double probabilidadVivir;
 
