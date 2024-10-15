@@ -1,8 +1,12 @@
 package com.example.APPI.REST.G411.MODELOS;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 @Table(name="pacientes")
 public class Paciente {
@@ -18,6 +22,27 @@ public class Paciente {
     private Boolean tienePoliza;
     private String grupoIngreso; // debe ser a, b o c
     private LocalDate fechaAfiliacion; // validas entre 1995 - 2024
+
+    // LAS RELACIONES SON ATRIBUTOS
+    @ManyToOne
+    @JoinColumn(name = "fk_medico", referencedColumnName = "id")
+    @JsonBackReference
+    private Medico medico;
+
+    // UNA RELACIÓN ES UN NUEVO ATRIBUTO
+    @OneToMany(mappedBy = "paciente")
+    @JsonManagedReference
+    private List<Medicamento> medicamentos;
+
+    // UNA RELACIÓN ES UN NUEVO ATRIBUTO
+    @OneToMany(mappedBy = "paciente")
+    @JsonManagedReference
+    private List<Enfermedad> enfermedades;
+
+    // UNA RELACIÓN ES UN NUEVO ATRIBUTO
+    @OneToMany(mappedBy = "paciente")
+    @JsonManagedReference
+    private List<signoVital> signosVitales;
 
     public Paciente() {
     }

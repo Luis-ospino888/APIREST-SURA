@@ -1,5 +1,6 @@
 package com.example.APPI.REST.G411.MODELOS;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,11 +9,17 @@ public class Enfermedad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String nombre; // maximo 30 caracteres
-    private String sintomas; // maximo 100 caracteres
-    private String clasificacion; // 
-    private String grado;
-    private double probabilidadVivir;
+    private String nombre; // maximo 30 caracteres - solo admito letras
+    private String sintomas; // maximo 100 caracteres - solo admito letras
+    private String clasificacion; // maximo 20 caracteres - solo admito letras
+    private String grado; // grado 1 - grado 2 - grado 3
+    private double probabilidadVivir; // formato 1% - 100%
+
+    // LAS RELACIONES SON ATRIBUTOS
+    @ManyToOne
+    @JoinColumn(name = "fk_paciente", referencedColumnName = "id")
+    @JsonBackReference
+    private Paciente paciente;
 
     public Enfermedad() {
     }

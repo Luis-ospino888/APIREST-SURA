@@ -1,5 +1,6 @@
 package com.example.APPI.REST.G411.MODELOS;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -12,6 +13,12 @@ public class signoVital {
     private String nombre; // maximo 50 caracteres y solo letras
     private String valor; //
     private LocalDate fechaMedida;
+
+    // LAS RELACIONES SON ATRIBUTOS
+    @ManyToOne
+    @JoinColumn(name = "fk_paciente", referencedColumnName = "id")
+    @JsonBackReference
+    private Paciente paciente;
 
     public signoVital() {
     }

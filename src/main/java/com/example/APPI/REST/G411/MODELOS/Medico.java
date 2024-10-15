@@ -1,6 +1,9 @@
 package com.example.APPI.REST.G411.MODELOS;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "medicos")
@@ -13,10 +16,16 @@ public class Medico {
     private String especialidad; // 50 caracteres
     private Integer salario; // no puede ser negativo - minimo 8000000 maximo 30000000
     private String ipsAsociado; // 50 caracteres
-    private String correo; // formato @sura.com.co
+    private String correo; // formato @gmail.com.co - @hotmail.com - @outlook.com
     private String telefono; // 10 caracteres
     private String direccion; // 100 caracteres
     private Boolean estaDisponibleFindesemana;
+
+    // UNA RELACIÓN ES UN NUEVO ATRIBUTO
+    @OneToMany(mappedBy = "medico")
+    @JsonManagedReference
+    private List<Paciente> pacientes;
+
 
     public Medico() {
     }
